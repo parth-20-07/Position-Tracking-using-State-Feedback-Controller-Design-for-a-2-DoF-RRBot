@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB 2023a"><title>Untitled</title><style type="text/css">.rtcContent { padding: 30px; } .CodeBlock { background-color: #F5F5F5; margin: 10px 0 10px 0; }
+.S0 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 1px solid rgb(217, 217, 217); border-bottom: 0px none rgb(33, 33, 33); border-radius: 4px 4px 0px 0px; padding: 6px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S1 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 0px none rgb(33, 33, 33); border-radius: 0px; padding: 0px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S2 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 1px solid rgb(217, 217, 217); border-radius: 0px 0px 4px 4px; padding: 0px 45px 4px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }</style></head><body><div class = rtcContent><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S0'><span style="white-space: pre"><span >rosshutdown;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >clear; close; clc;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span style="color: rgb(0, 128, 19);">% ROS Setup</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >rosinit;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >j1_effort = rospublisher(</span><span style="color: rgb(167, 9, 245);">"/rrbot/joint1_effort_controller/command"</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >j2_effort = rospublisher(</span><span style="color: rgb(167, 9, 245);">"/rrbot/joint2_effort_controller/command"</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >JointStates = rossubscriber(</span><span style="color: rgb(167, 9, 245);">"/rrbot/joint_states"</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tau1 = rosmessage(j1_effort);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tau2 = rosmessage(j2_effort);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tau1.Data = 0;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tau2.Data = 0;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >send(j1_effort,tau1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >send(j2_effort,tau2);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >client = rossvcclient(</span><span style="color: rgb(167, 9, 245);">'/gazebo/set_model_configuration'</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >req = rosmessage(client);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >req.ModelName = </span><span style="color: rgb(167, 9, 245);">'rrbot'</span><span >;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >req.UrdfParamName = </span><span style="color: rgb(167, 9, 245);">'robot_description'</span><span >;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >req.JointNames = {</span><span style="color: rgb(167, 9, 245);">'joint1'</span><span >,</span><span style="color: rgb(167, 9, 245);">'joint2'</span><span >};</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >req.JointPositions = [deg2rad(30), deg2rad(45)];</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >resp = call(client,req,</span><span style="color: rgb(167, 9, 245);">'Timeout'</span><span >,3);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tic;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >time = 0;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >i=1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >K=[</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >   23.9371    6.4042    5.2636    0.1559;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    6.0097    1.8868    4.7955    0.2022;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >]</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span style="color: rgb(14, 0, 255);">while</span><span >(time &lt; 10)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    time = toc;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    t(i) = time;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    </span><span style="color: rgb(0, 128, 19);">% read the joint states</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    jointData = receive(JointStates);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    X(i,1) = jointData.Position(1,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    X(i,2) = jointData.Velocity(1,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    X(i,3) = jointData.Position(2,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    X(i,4) = jointData.Velocity(1,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    x = X(i,:)';</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    Z = -K*x;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    tau1.Data = Z(1,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    tau2.Data = Z(2,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    U(i,1)=Z(1,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    U(i,2)=Z(2,1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    send(j1_effort,tau1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    send(j2_effort,tau2);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    </span><span style="color: rgb(0, 128, 19);">% sample the time, joint state values, and calculated torques here to</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    </span><span style="color: rgb(0, 128, 19);">% be plotted at the end</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >    i=i+1;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span style="color: rgb(14, 0, 255);">end</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tau1.Data = 0;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >tau2.Data = 0;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >send(j1_effort,tau1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >send(j2_effort,tau2);</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span style="color: rgb(0, 128, 19);">% disconnect from roscore</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >rosshutdown;</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span style="color: rgb(0, 128, 19);">% plot the trajectories</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >plot(t,X(:,1))</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >xlabel(</span><span style="color: rgb(167, 9, 245);">'t'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >ylabel(</span><span style="color: rgb(167, 9, 245);">'${\theta_1}$'</span><span >, </span><span style="color: rgb(167, 9, 245);">'Interpreter'</span><span >,</span><span style="color: rgb(167, 9, 245);">'latex'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >title(</span><span style="color: rgb(167, 9, 245);">'Gazebo Simulation'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >saveas(gcf,</span><span style="color: rgb(167, 9, 245);">'theta_1.jpg'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >plot(t,X(:,2))</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >xlabel(</span><span style="color: rgb(167, 9, 245);">'t'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >ylabel(</span><span style="color: rgb(167, 9, 245);">'$\dot{\theta_1}$'</span><span >, </span><span style="color: rgb(167, 9, 245);">'Interpreter'</span><span >,</span><span style="color: rgb(167, 9, 245);">'latex'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >title(</span><span style="color: rgb(167, 9, 245);">'Gazebo Simulation'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >saveas(gcf,</span><span style="color: rgb(167, 9, 245);">'theta_dot_1.jpg'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >plot(t,U(:,1))</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >xlabel(</span><span style="color: rgb(167, 9, 245);">'t'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >ylabel(</span><span style="color: rgb(167, 9, 245);">'${\tau_1}$'</span><span >, </span><span style="color: rgb(167, 9, 245);">'Interpreter'</span><span >,</span><span style="color: rgb(167, 9, 245);">'latex'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >title(</span><span style="color: rgb(167, 9, 245);">'Gazebo Simulation'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >saveas(gcf,</span><span style="color: rgb(167, 9, 245);">'Tau_1.jpg'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >plot(t,X(:,3))</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >xlabel(</span><span style="color: rgb(167, 9, 245);">'t'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >ylabel(</span><span style="color: rgb(167, 9, 245);">'${\theta_2}$'</span><span >, </span><span style="color: rgb(167, 9, 245);">'Interpreter'</span><span >,</span><span style="color: rgb(167, 9, 245);">'latex'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >title(</span><span style="color: rgb(167, 9, 245);">'Gazebo Simulation'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >saveas(gcf,</span><span style="color: rgb(167, 9, 245);">'theta_2.jpg'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >plot(t,X(:,4))</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >xlabel(</span><span style="color: rgb(167, 9, 245);">'t'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >ylabel(</span><span style="color: rgb(167, 9, 245);">'$\dot{\theta_2}$'</span><span >, </span><span style="color: rgb(167, 9, 245);">'Interpreter'</span><span >,</span><span style="color: rgb(167, 9, 245);">'latex'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >title(</span><span style="color: rgb(167, 9, 245);">'Gazebo Simulation'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >saveas(gcf,</span><span style="color: rgb(167, 9, 245);">'theta_dot_2.jpg'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >plot(t,U(:,2))</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >xlabel(</span><span style="color: rgb(167, 9, 245);">'t'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >ylabel(</span><span style="color: rgb(167, 9, 245);">'${\tau_2}$'</span><span >, </span><span style="color: rgb(167, 9, 245);">'Interpreter'</span><span >,</span><span style="color: rgb(167, 9, 245);">'latex'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S1'><span style="white-space: pre"><span >title(</span><span style="color: rgb(167, 9, 245);">'Gazebo Simulation'</span><span >)</span></span></div></div><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >saveas(gcf,</span><span style="color: rgb(167, 9, 245);">'tau_2.jpg'</span><span >)</span></span></div></div></div>
+<br>
+<!-- 
+##### SOURCE BEGIN #####
+rosshutdown;
+clear; close; clc;
+% ROS Setup
+rosinit;
+j1_effort = rospublisher("/rrbot/joint1_effort_controller/command");
+j2_effort = rospublisher("/rrbot/joint2_effort_controller/command");
+JointStates = rossubscriber("/rrbot/joint_states");
+tau1 = rosmessage(j1_effort);
+tau2 = rosmessage(j2_effort);
+tau1.Data = 0;
+tau2.Data = 0;
+send(j1_effort,tau1);
+send(j2_effort,tau2);
+client = rossvcclient('/gazebo/set_model_configuration');
+req = rosmessage(client);
+req.ModelName = 'rrbot';
+req.UrdfParamName = 'robot_description';
+req.JointNames = {'joint1','joint2'};
+req.JointPositions = [deg2rad(30), deg2rad(45)];
+resp = call(client,req,'Timeout',3);
+tic;
+time = 0;
+i=1;
+K=[
+   23.9371    6.4042    5.2636    0.1559;
+    6.0097    1.8868    4.7955    0.2022;
+]
+while(time < 10)
+    time = toc;
+    t(i) = time;
+    % read the joint states
+    jointData = receive(JointStates);
+    X(i,1) = jointData.Position(1,1);
+    X(i,2) = jointData.Velocity(1,1);
+    X(i,3) = jointData.Position(2,1);
+    X(i,4) = jointData.Velocity(1,1);
+    x = X(i,:)';
+    Z = -K*x;
+    tau1.Data = Z(1,1);
+    tau2.Data = Z(2,1);
+    U(i,1)=Z(1,1);
+    U(i,2)=Z(2,1);
+    send(j1_effort,tau1);
+    send(j2_effort,tau2);
+    % sample the time, joint state values, and calculated torques here to
+    % be plotted at the end
+    i=i+1;
+end
+tau1.Data = 0;
+tau2.Data = 0;
+send(j1_effort,tau1);
+send(j2_effort,tau2);
+% disconnect from roscore
+rosshutdown;
+% plot the trajectories
+plot(t,X(:,1))
+xlabel('t')
+ylabel('${\theta_1}$', 'Interpreter','latex')
+title('Gazebo Simulation')
+saveas(gcf,'theta_1.jpg')
+plot(t,X(:,2))
+xlabel('t')
+ylabel('$\dot{\theta_1}$', 'Interpreter','latex')
+title('Gazebo Simulation')
+saveas(gcf,'theta_dot_1.jpg')
+plot(t,U(:,1))
+xlabel('t')
+ylabel('${\tau_1}$', 'Interpreter','latex')
+title('Gazebo Simulation')
+saveas(gcf,'Tau_1.jpg')
+plot(t,X(:,3))
+xlabel('t')
+ylabel('${\theta_2}$', 'Interpreter','latex')
+title('Gazebo Simulation')
+saveas(gcf,'theta_2.jpg')
+plot(t,X(:,4))
+xlabel('t')
+ylabel('$\dot{\theta_2}$', 'Interpreter','latex')
+title('Gazebo Simulation')
+saveas(gcf,'theta_dot_2.jpg')
+plot(t,U(:,2))
+xlabel('t')
+ylabel('${\tau_2}$', 'Interpreter','latex')
+title('Gazebo Simulation')
+saveas(gcf,'tau_2.jpg')
+##### SOURCE END #####
+-->
+</div></body></html>

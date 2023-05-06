@@ -112,6 +112,12 @@ $$
 \dot{z_{2}}\\
 \dot{z_{3}}\\
 \dot{z_{4}}\\
+\end{bmatrix} = 
+\begin{bmatrix}
+z_{2}\\
+\ddot{\theta_{1}}\\
+z_{4}\\
+\ddot{\theta_{2}}
 \end{bmatrix}
 \end{equation}
 $$

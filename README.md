@@ -130,7 +130,12 @@ Using the non-linearized state space equation
 
 $$
 \begin{equation}\notag
-\dot{z} = f(x,u)\\
+\dot{z} = f(x,u)
+\end{equation}
+$$
+
+$$
+\begin{equation}\notag
 y = h(x,u)
 \end{equation}
 $$
@@ -140,11 +145,17 @@ Create a new set of linearized state space equations using the equilibrium point
 $$
 \begin{equation}\notag
 \dot{\bar{x}} = \bar{A}\bar{x} + \bar{B}\bar{u}\\
+\end{equation}
+$$
+
+$$
+\begin{equation}\notag
 \bar{y} = \bar{C}\bar{x} + \bar{D}\bar{u}\\
 \end{equation}
 $$
 
 where;
+
 $$
 \begin{equation}\notag
 \bar{A} = \frac{\partial{f_{z}}}{\partial{z}}|_{z=z^{*}}

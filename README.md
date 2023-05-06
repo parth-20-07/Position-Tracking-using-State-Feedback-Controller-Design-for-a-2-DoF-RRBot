@@ -106,15 +106,13 @@ Thus;
 
 $$
 \begin{equation}\notag
-\dot{z} =
-
+\dot{z} = 
 \begin{bmatrix}
-  \dot{z_{1}}\\
-  \dot{z_{2}}\\
-  \dot{z_{3}}\\
-  \dot{z_{4}}\\
+\dot{z_{1}}\\
+\dot{z_{2}}\\
+\dot{z_{3}}\\
+\dot{z_{4}}\\
 \end{bmatrix}
-
 \end{equation}
 $$
 

@@ -57,16 +57,22 @@ When taking a look at the dynamics of the system, we notice that the dynamics ar
   $$
   \begin{equation}\notag
   z_{1} = \theta_{1}
-  \end{equation}\\
+  \end{equation}
+  $$
 
+  $$
   \begin{equation}\notag
   z_{2} = \dot{\theta_{1}}
-  \end{equation}\\
+  \end{equation}
+  $$
 
+  $$
   \begin{equation}\notag
   \dot{z_{1}} = \dot{\theta_{1}} = z_{2}
-  \end{equation}\\
+  \end{equation}
+  $$
 
+  $$
   \begin{equation}\notag
   \dot{z_{2}} = \ddot{\theta_{1}}
   \end{equation}
@@ -75,16 +81,22 @@ When taking a look at the dynamics of the system, we notice that the dynamics ar
   $$
   \begin{equation}\notag
   z_{3} = \theta_{2}
-  \end{equation}\\
+  \end{equation}
+  $$
 
+  $$
   \begin{equation}\notag
   z_{4} = \dot{\theta_{2}}
-  \end{equation}\\
+  \end{equation}
+  $$
 
+  $$
   \begin{equation}\notag
   \dot{z_{3}} = \dot{\theta_{2}} = z_{4}
-  \end{equation}\\
+  \end{equation}
+  $$
 
+  $$
   \begin{equation}\notag
   \dot{z_{4}} = \ddot{\theta_{2}}
   \end{equation}

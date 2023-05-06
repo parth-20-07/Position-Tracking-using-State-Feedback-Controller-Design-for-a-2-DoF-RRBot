@@ -40,88 +40,88 @@ When taking a look at the dynamics of the system, we notice that the dynamics ar
 
   Form the state space matrix for the system using the Equation of motion where
   
-  $$
-  \begin{equation}\notag
-  z = 
-  \begin{bmatrix}
-  z_{1}\\
-  z_{2}\\
-  z_{3}\\
-  z_{4}\\
-  \end{bmatrix}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+z = 
+\begin{bmatrix}
+z_{1}\\
+z_{2}\\
+z_{3}\\
+z_{4}\\
+\end{bmatrix}
+\end{equation}
+$$
 
-  where;
-  
-  $$
-  \begin{equation}\notag
-  z_{1} = \theta_{1}
-  \end{equation}
-  $$
+where;
 
-  $$
-  \begin{equation}\notag
-  z_{2} = \dot{\theta_{1}}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+z_{1} = \theta_{1}
+\end{equation}
+$$
 
-  $$
-  \begin{equation}\notag
-  \dot{z_{1}} = \dot{\theta_{1}} = z_{2}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+z_{2} = \dot{\theta_{1}}
+\end{equation}
+$$
 
-  $$
-  \begin{equation}\notag
-  \dot{z_{2}} = \ddot{\theta_{1}}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+\dot{z_{1}} = \dot{\theta_{1}} = z_{2}
+\end{equation}
+$$
 
-  $$
-  \begin{equation}\notag
-  z_{3} = \theta_{2}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+\dot{z_{2}} = \ddot{\theta_{1}}
+\end{equation}
+$$
 
-  $$
-  \begin{equation}\notag
-  z_{4} = \dot{\theta_{2}}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+z_{3} = \theta_{2}
+\end{equation}
+$$
 
-  $$
-  \begin{equation}\notag
-  \dot{z_{3}} = \dot{\theta_{2}} = z_{4}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+z_{4} = \dot{\theta_{2}}
+\end{equation}
+$$
 
-  $$
-  \begin{equation}\notag
-  \dot{z_{4}} = \ddot{\theta_{2}}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+\dot{z_{3}} = \dot{\theta_{2}} = z_{4}
+\end{equation}
+$$
+
+$$
+\begin{equation}\notag
+\dot{z_{4}} = \ddot{\theta_{2}}
+\end{equation}
+$$
 
 Thus;
 
-  $$
-  \begin{equation}\notag
-  \dot{z} = 
-  \begin{bmatrix}
-  \dot{z_{1}}\\
-  \dot{z_{2}}\\
-  \dot{z_{3}}\\
-  \dot{z_{4}}\\
-  \end{bmatrix}
-  =
-  \begin{bmatrix}
-  z_{2}\\
-  \ddot{\theta_{1}}\\
-  z_{4}\\
-  \ddot{\theta_{2}}\\
-  \end{bmatrix}
-  \end{equation}
-  $$
+$$
+\begin{equation}\notag
+\dot{z} = 
+\begin{bmatrix}
+\dot{z_{1}}\\
+\dot{z_{2}}\\
+\dot{z_{3}}\\
+\dot{z_{4}}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+z_{2}\\
+\ddot{\theta_{1}}\\
+z_{4}\\
+\ddot{\theta_{2}}\\
+\end{bmatrix}
+\end{equation}
+$$
 
   Equate $\dot{z} = 0$ with $\dot{\theta_{1}} = 0,\dot{\theta_{2}} = 0,\ddot{\theta_{1}} = 0,\ddot{\theta_{2}} = 0$ which related to arm being stationary at eqilibirum. Thus, the equilibrium positions can be found in the solution. The set of solutions is represented by $x^{*}$.
 

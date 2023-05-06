@@ -38,8 +38,10 @@ When taking a look at the dynamics of the system, we notice that the dynamics ar
 
 ## Find the Equilibrium Points of the system:
 
-  Form the state space matrix for the system using Equation of motion where
+  Form the state space matrix for the system using the Equation of motion where
+  
   $$
+  \begin{equation}\notag
   z = 
   \begin{bmatrix}
   z_{1}\\
@@ -47,26 +49,33 @@ When taking a look at the dynamics of the system, we notice that the dynamics ar
   z_{3}\\
   z_{4}\\
   \end{bmatrix}
+  \end{equation}
   $$
 
   where;
+  
   $$
+  \begin{equation}\notag
   z_{1} = \theta_{1}\\
   z_{2} = \dot{\theta_{1}}\\
   \dot{z_{1}} = \dot{\theta_{1}} = z_{2}\\
   \dot{z_{2}} = \ddot{\theta_{1}}
+  \end{equation}
   $$
 
   $$
+  \begin{equation}\notag
   z_{3} = \theta_{2}\\
   z_{4} = \dot{\theta_{2}}\\
   \dot{z_{3}} = \dot{\theta_{2}} = z_{4}\\
   \dot{z_{4}} = \ddot{\theta_{2}}\\
+  \end{equation}
   $$
 
 Thus;
 
   $$
+  \begin{equation}\notag
   \dot{z} = 
   \begin{bmatrix}
   \dot{z_{1}}\\
@@ -81,6 +90,7 @@ Thus;
   z_{4}\\
   \ddot{\theta_{2}}\\
   \end{bmatrix}
+  \end{equation}
   $$
 
   Equate $\dot{z} = 0$ with $\dot{\theta_{1}} = 0,\dot{\theta_{2}} = 0,\ddot{\theta_{1}} = 0,\ddot{\theta_{2}} = 0$ which related to arm being stationary at eqilibirum. Thus, the equilibrium positions can be found in the solution. The set of solutions is represented by $x^{*}$.
@@ -90,32 +100,38 @@ Thus;
 Using the non-linearized state space equation
 
 $$
+\begin{equation}\notag
 \dot{z} = f(x,u)\\
 y = h(x,u)
+\end{equation}
 $$
 
 Create a new set of linearized state space equations using the equilibrium point of the form:
 
 $$
+\begin{equation}\notag
 \dot{\bar{x}} = \bar{A}\bar{x} + \bar{B}\bar{u}\\
 \bar{y} = \bar{C}\bar{x} + \bar{D}\bar{u}\\
+\end{equation}
 $$
 
 where;
 $$
+\begin{equation}\notag
 \bar{A} = \frac{\partial{f_{z}}}{\partial{z}}|_{z=z^{*}}
-$$
+\end{equation}\\
 
-$$
+\begin{equation}\notag
 \bar{B} = \frac{\partial{f_{u}}}{\partial{u}}|_{u=u^{*}}
-$$
+\end{equation}\\
 
-$$
+\begin{equation}\notag
 \bar{C} = \frac{\partial{h_{z}}}{\partial{z}}|_{z=z^{*}}
-$$
+\end{equation}\\
 
-$$
+\begin{equation}\notag
 \bar{D} = \frac{\partial{h_{u}}}{\partial{u}}|_{u=u^{*}}
+\end{equation}\\
 $$
 
 ## Check for stability
@@ -127,10 +143,12 @@ Check the system stability using eigenvalues. If the Real part of any eigenvalue
 Check the controllability of the system by deriving the $M_{C}$ matrix, the controllability matrix using:
 
 $$
+\begin{equation}\notag
 M_{C} = 
 \begin{bmatrix}
 \bar{B} && \bar{A}\bar{B} && \bar{A}^{2}\bar{B} && \dots && \bar{A}^{n}\bar{B}
 \end{bmatrix}
+\end{equation}
 $$
 
 if $rank(C) = rank(A)$, the system for the equilibrium point is controllable.

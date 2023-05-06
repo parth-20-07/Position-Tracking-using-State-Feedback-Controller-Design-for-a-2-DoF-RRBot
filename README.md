@@ -9,6 +9,7 @@
     - [Check for stability](#check-for-stability)
     - [Check for Controllability](#check-for-controllability)
     - [Design State Feedback Controller](#design-state-feedback-controller)
+- [Results](#results)
     - [MATLAB](#matlab)
     - [Gazebo and ROS](#gazebo-and-ros)
 - [Observations and Results](#observations-and-results)
@@ -141,6 +142,8 @@ For a controllable set of equilibrium points;
 - Choose a set of complex poles (The real part of poles are less than zero).
 - Find the $K$ for the controller using `K = place(linearA, linearB, poles)`.
 - Design the controller of form $u = -Kx$
+
+# Results
 
 ## MATLAB
 The complete calculation has been done [here (webpage form)](https://htmlpreview.github.io/?https://github.com/parth-20-07/Position-Tracking-using-State-Feedback-Controller-Design-for-a-2-DoF-RRBot/blob/main/Solution/MATLAB/main.html) in MATLAB. The systems with the equation of motion are simulated as follows

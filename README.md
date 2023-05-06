@@ -159,19 +159,25 @@ where;
 $$
 \begin{equation}\notag
 \bar{A} = \frac{\partial{f_{z}}}{\partial{z}}|_{z=z^{*}}
-\end{equation}\\
+\end{equation}
+$$
 
+$$
 \begin{equation}\notag
 \bar{B} = \frac{\partial{f_{u}}}{\partial{u}}|_{u=u^{*}}
-\end{equation}\\
+\end{equation}
+$$
 
+$$
 \begin{equation}\notag
 \bar{C} = \frac{\partial{h_{z}}}{\partial{z}}|_{z=z^{*}}
-\end{equation}\\
+\end{equation}
+$$
 
+$$
 \begin{equation}\notag
 \bar{D} = \frac{\partial{h_{u}}}{\partial{u}}|_{u=u^{*}}
-\end{equation}\\
+\end{equation}
 $$
 
 ## Check for stability

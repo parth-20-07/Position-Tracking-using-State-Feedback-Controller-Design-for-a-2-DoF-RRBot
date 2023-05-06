@@ -106,24 +106,26 @@ Thus;
 
 $$
 \begin{equation}\notag
-\dot{z} = 
+\dot{z} =
+
 \begin{bmatrix}
-\dot{z_{1}}\\
-\dot{z_{2}}\\
-\dot{z_{3}}\\
-\dot{z_{4}}\\
+  \dot{z_{1}}\\
+  \dot{z_{2}}\\
+  \dot{z_{3}}\\
+  \dot{z_{4}}\\
 \end{bmatrix}
 =
 \begin{bmatrix}
-z_{2}\\
-\ddot{\theta_{1}}\\
-z_{4}\\
-\ddot{\theta_{2}}\\
+  z_{2}\\
+  \ddot{\theta_{1}}\\
+  z_{4}\\
+  \ddot{\theta_{2}}\\
 \end{bmatrix}
+
 \end{equation}
 $$
 
-  Equate $\dot{z} = 0$ with $\dot{\theta_{1}} = 0,\dot{\theta_{2}} = 0,\ddot{\theta_{1}} = 0,\ddot{\theta_{2}} = 0$ which related to arm being stationary at eqilibirum. Thus, the equilibrium positions can be found in the solution. The set of solutions is represented by $x^{*}$.
+Equate $\dot{z} = 0$ with $\dot{\theta_{1}} = 0,\dot{\theta_{2}} = 0,\ddot{\theta_{1}} = 0,\ddot{\theta_{2}} = 0$ which related to arm being stationary at eqilibirum. Thus, the equilibrium positions can be found in the solution. The set of solutions is represented by $x^{*}$.
 
 ## Linearize the System Using Equilibrium Points
 

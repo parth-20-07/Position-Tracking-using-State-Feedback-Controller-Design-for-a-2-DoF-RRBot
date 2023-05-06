@@ -227,7 +227,7 @@ The same system is simulated with the equations of motion present in Gazebo with
 | $\tau_{1}$ vs $t$         | ![matlab_tau1_vs_t](./Solution/MATLAB/tau_1.jpg)          | ![gazebo_tau1_vs_t](./Solution/Gazebo/Tau_1.jpg)          |
 | $\theta_{2}$ vs $t$       | ![matlab_theta2_vs_t](./Solution/MATLAB/theta2.jpg)       | ![gazebo_theta2_vs_t](./Solution/Gazebo/theta_2.jpg)      |
 | $\dot{\theta_{2}}$ vs $t$ | ![matlab_dtheta2_vs_t](./Solution/MATLAB/theta_dot_2.jpg) | ![gazebo_dtheta2_vs_t](./Solution/Gazebo/theta_dot_2.jpg) |
-| $\tau_{2}$ vs $t$         | ![matlab_tau2_vs_t](./Solution/MATLAB/tau_2.jpg)          | ![gazebo_tau2_vs_t](./Solution/Gazebo/Tau_2.jpg)          |
+| $\tau_{2}$ vs $t$         | ![matlab_tau2_vs_t](./Solution/MATLAB/tau_2.jpg)          | ![gazebo_tau2_vs_t](./Solution/Gazebo/tau_2.jpg)          |
 
 **Possible Reasons for difference:**
 - The lack of friction in the MATLAB System.

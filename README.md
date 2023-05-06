@@ -3,6 +3,7 @@
 <!-- TOC -->
 
 - [About](#about)
+- [How to Design State Feedback Controller](#how-to-design-state-feedback-controller)
     - [Find the Equilibrium Points of the system:](#find-the-equilibrium-points-of-the-system)
     - [Linearize the System Using Equilibrium Points](#linearize-the-system-using-equilibrium-points)
     - [Check for stability](#check-for-stability)
@@ -28,7 +29,9 @@ The assignment aims to design a state feedback controller for position tracking 
 
 $$
 u = - Kx
-$$How to Design State Feedback Controller
+$$
+
+# How to Design State Feedback Controller
 
 When taking a look at the dynamics of the system, we notice that the dynamics are non-linear. This makes it impossible to implement the controller. We can linearise the dynamics as follows:
 
